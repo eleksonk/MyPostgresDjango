@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
@@ -80,20 +80,16 @@ def vehicleUrl(request, veh_no):
 
 def vehicleParticular(request):
     if request.method == 'POST':
-        veh_no = request.POST['veh_no'].upper()  
-        print(veh_no)
-        #vehicle = vt_owner.objects.get(regn_no__exact=veh_no) 
-        try:      
-            vehicle = get_object_or_404(vt_owner, regn_no = veh_no)   
+        veh_no = request.POST['veh_no'].upper()
+        #print(veh_no)        
+        if vt_owner.objects.filter(regn_no = veh_no).exists():
+            vehicle = vt_owner.objects.get(regn_no__exact=veh_no)
             return render(request, 'vehicleParticular.html', {'vehicle': vehicle})
-            '''if vehicle is not None:
-                return render(request, 'vehicleParticular.html', {'vehicle': vehicle})
-            else:
-                messages.info(request, "Vehicle does not exist")
-                return redirect('vehicleEntry')'''
-        except vt_owner.DoesNotExist:
-            return redirect('vehicleEntry')
+        else:
+            messages.info(request, "Vehicle No does not exist")
+            return redirect('vehicleParticular')
     else:
         return render(request, 'vehicleParticular.html')
-            
 
+
+            

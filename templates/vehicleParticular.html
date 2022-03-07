@@ -1,18 +1,23 @@
 <html>
     <head>
         <title>Vehicle Details</title>
+        <style type="text/css">
+            h4{
+                color: red;
+            }
+        </style>
     </head>
     <body>        
 
-        <h4>Check Vehicle Details</h4>
+        <h3>Check Vehicle Details</h3>
         <form action="vehicleParticular" method="POST" autocomplete="off">
             {% csrf_token %}
-            <p>Vehicle No:<br/>
-            <input type="text" name="veh_no" minlength="8" maxlength="10" style="text-transform:uppercase"/></p>
-            <p><input type="submit"/></p>
             {% for message in messages %}
             <h4>{{message}}</h4>
             {% endfor %}
+            <p>Vehicle No:<br/>
+            <input type="text" name="veh_no" minlength="8" maxlength="10" style="text-transform:uppercase"/></p>
+            <p><input type="submit"/></p>            
             <p><b>Vehicle No: </b>{{vehicle.regn_no}}</p>
             <p><b>Owner Name: </b>{{vehicle.owner_name}}</p>
             <p><b>Registration Date: </b>{{vehicle.regn_dt}}</p>
