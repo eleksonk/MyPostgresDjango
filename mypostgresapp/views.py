@@ -81,7 +81,7 @@ def vehicleUrl(request, veh_no):
 def vehicleParticular(request):
     if request.method == 'POST':
         veh_no = request.POST['veh_no'].upper()  
-        #print(veh_no)
+        print(veh_no)
         #vehicle = vt_owner.objects.get(regn_no__exact=veh_no) 
         try:      
             vehicle = get_object_or_404(vt_owner, regn_no = veh_no)   
