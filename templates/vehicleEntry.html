@@ -1,0 +1,29 @@
+<style>
+    h5{
+        color: red
+    }
+    h4{
+        color: green
+    }
+</style>
+<h1>Vehicle Registration Form</h1>
+{% for message in messages %}
+    {% if message == 'Success' %}
+        <h4>Vehicle registered succesfully</h4>
+    {% else %}
+        <h5>{{message}}</h5>
+    {% endif %}
+{% endfor %}
+
+<form method="POST" action="vehicleEntry" autocomplete="off">
+    {% csrf_token %}
+    <p>Vehicle No:</p>
+    <input type="text" name="regn_no" minlength="8" maxlength="10" style="text-transform:uppercase"/> <br/>
+    <p>Owner Name:</p>
+    <input type="text" name="owner_name"/> <br/>
+    <p>Registration Date:</p>
+    <input type="date" name="regn_dt"/> <br/>
+    <p>No. of cylinders:</p>
+    <input type="number" name="no_cyl"/> <br/><br/>
+    <input type="submit"/>
+</form>

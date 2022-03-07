@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Django PostgreSql</title>
+</head>
+
+<body>
+  <table border="1px solid black" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th>Vehicle No.</th>
+        <th>Owner Name</th>
+        <th>Registration Date</th>
+        <th>No. of cylinders</th>
+    </thead>
+    <tbody>
+      {% for vehicle in vehicles %}
+      <tr>
+        <td><a href="vehicleUrl/{{vehicle.regn_no}}">{{vehicle.regn_no}}</a></td>
+        <td>{{vehicle.owner_name}}</td>
+        <td>{{vehicle.regn_dt}}</td>
+        <td>{{vehicle.no_cyl}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><a href="vehicleEntry"> Vehicle Entry</a></p>
+</body>
+
+</html>
