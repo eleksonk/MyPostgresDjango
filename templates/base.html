@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <title>My amazing site</title>
+</head>
+
+<body>
+    <p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>
+    <div>
+        <p>Welcome to block content in django</p>
+    </div>
+    <div>
+        {% block xyz %}
+        {% endblock xyz %}
+    </div>
+</body>
+</html>

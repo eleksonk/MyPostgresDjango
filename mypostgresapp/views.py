@@ -92,6 +92,7 @@ def vehicleParticular(request):
     else:
         return render(request, 'vehicleParticular.html')
 
+#First method of binding dropdownlist with db - 1
 def vehicleEntry(request):
     results = vm_vh_class.objects.all()
     return render(request, 'vehicleEntry.html',{'veh_classes': results})
@@ -118,3 +119,35 @@ def saveVehicle(request):
             return redirect('vehicleEntry')
     else:
         return render(request, 'vehicleEntry.html')
+
+
+#another method of binding dropdownlist with db - 2
+def entryForm(request):
+    results=vm_vh_class.objects.all()
+    return render(request, "dropdown.html",{"classes":results})
+
+def entrySave(request):
+    if request.method == 'POST':        
+        veh_no = request.POST['regn_no'].upper()    
+        o_name = request.POST['owner_name']
+        reg_dt= request.POST['regn_dt']
+        cyl_no = request.POST['no_cyl']
+        veh_class = request.POST['veh_class']
+        
+        if veh_no != "" and o_name!="" and reg_dt!="" and cyl_no!="" and veh_class!="--Select--":        
+            if vt_owner.objects.filter(regn_no = veh_no).exists():
+                messages.info(request, "Vehicle No. already exist")
+                return redirect('entryForm')
+            else:
+                owner = vt_owner.objects.create(regn_no = veh_no, owner_name = o_name, regn_dt = reg_dt, no_cyl = cyl_no, vh_class_id= veh_class)
+                owner.save()
+                #messages.info(request, "Success")
+                return redirect('vehicleAll')
+        else:
+            messages.info(request, "Check entered data")
+            return redirect('entryForm')
+    else:
+        return render(request, 'Veh_entry_2nd.html')
+
+def base(request):    
+    return render(request, "base_news.html")

@@ -1,0 +1,12 @@
+{% extends "Veh_entry_2nd.html" %}
+ 
+{% block vhclass %}
+<p>
+      <select name="veh_class">
+      <option>--Select--</option>
+                  {% for result in classes %}
+                  <option value="{{ result.code }}">{{ result.descr}}</option>
+                  {% endfor %}
+      </select>
+</p>
+{% endblock vhclass %}
