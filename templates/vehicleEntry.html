@@ -6,7 +6,9 @@
         color: green
     }
 </style>
+<p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>
 <h1>Vehicle Registration Form</h1>
+
 {% for message in messages %}
     {% if message == 'Success' %}
         <h4>Vehicle registered succesfully</h4>
@@ -15,15 +17,22 @@
     {% endif %}
 {% endfor %}
 
-<form method="POST" action="vehicleEntry" autocomplete="off">
+<form method="POST" action="saveVehicle" autocomplete="off">
     {% csrf_token %}
-    <p>Vehicle No:</p>
-    <input type="text" name="regn_no" minlength="8" maxlength="10" style="text-transform:uppercase"/> <br/>
-    <p>Owner Name:</p>
-    <input type="text" name="owner_name"/> <br/>
-    <p>Registration Date:</p>
-    <input type="date" name="regn_dt"/> <br/>
-    <p>No. of cylinders:</p>
-    <input type="number" name="no_cyl"/> <br/><br/>
-    <input type="submit"/>
+    <p>Vehicle No:<br>
+    <input type="text" name="regn_no" minlength="8" maxlength="10" style="text-transform:uppercase"/> </p>
+    <p>Owner Name:<br/>
+    <input type="text" name="owner_name"/> </p>
+    <p>Registration Date: <br/>
+    <input type="date" name="regn_dt"/></p>
+    <p>No. of cylinders:<br/>
+    <input type="number" name="no_cyl"/> </p>        
+    <p>    <select name="veh_class">
+            <option>--Select--</option>
+            {% for vh_class in veh_classes %}           
+            <option value="{{vh_class.code}}">{{ vh_class.descr }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <input type="submit" name="sbmt_btn" value="Submit"/>
 </form>

@@ -2,7 +2,8 @@
     <head>
         <title>Vehicle Details</title>
     </head>
-    <body>        
+    <body> 
+        <p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>       
         <h4>Vehicle Details</h4>
         <p><b>Vehicle No: </b>{{vehicle.regn_no}}</p>
         <p><b>Owner Name: </b>{{vehicle.owner_name}}</p>

@@ -8,7 +8,7 @@
         </style>
     </head>
     <body>        
-
+        <p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>
         <h3>Check Vehicle Details</h3>
         <form action="vehicleParticular" method="POST" autocomplete="off">
             {% csrf_token %}
@@ -17,13 +17,13 @@
             {% endfor %}
             <p>Vehicle No:<br/>
             <input type="text" name="veh_no" minlength="8" maxlength="10" style="text-transform:uppercase"/></p>
-            <p><input type="submit"/></p>            
+            <p><input type="submit"/></p>
             <p><b>Vehicle No: </b>{{vehicle.regn_no}}</p>
             <p><b>Owner Name: </b>{{vehicle.owner_name}}</p>
             <p><b>Registration Date: </b>{{vehicle.regn_dt}}</p>
             <p><b>No of Cylinders: </b>{{vehicle.no_cyl}}</p>
-            <br/>  
-            <p>Dont have vehicle<a href="vehicleEntry">  enter here</a></p>
+            <br/>
+            <p><a href="{% url 'vehicleEntry' %}"> Vehicle Entry</a></p>
         </form>
     </body>
 </html>

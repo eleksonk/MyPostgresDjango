@@ -1,0 +1,34 @@
+<style>
+    h5{
+        color: red
+    }
+    h4{
+        color: green
+    }
+</style>
+<p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>
+<h1>Vehicle Class Form</h1>
+{% for message in messages %}
+    {% if message == 'Success' %}
+        <h4>Vehicle class entered succesfully</h4>
+    {% else %}
+        <h5>{{message}}</h5>
+    {% endif %}
+{% endfor %}
+
+<form method="POST" action="vehicleClassEntry" autocomplete="off">
+    {% csrf_token %}
+    <p>Code:<br/>
+    <input type="text" name="vh_class_code" minlength="1" maxlength="3"/> </p>
+    <p>Description:<br/>
+    <input type="text" name="vh_class_desc"/> </p>
+    <p>category:<br/>
+        <select name="catg">
+            <option value="PV">Private </option>
+            <option value="PS">Passenger </option>
+            <option value="GD">Goods </option>
+        </select>
+    </p>
+     <br/><br/>
+    <input type="submit" value="Submit"/>
+</form>

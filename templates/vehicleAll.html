@@ -6,6 +6,7 @@
 </head>
 
 <body>
+  <p><a href="{% url 'index' %}" style="text-decoration: none">Home</a></p>
   <table border="1px solid black" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
@@ -24,8 +25,8 @@
       </tr>
       {% endfor %}
     </tbody>
-  </table>
-  <p><a href="vehicleEntry"> Vehicle Entry</a></p>
+  </table>  
+  <p><a href="{% url 'vehicleEntry' %}"> Vehicle Entry</a></p>
 </body>
 
 </html>
